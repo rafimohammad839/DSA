@@ -30,24 +30,55 @@
 */
 
 
-String.prototype.longestRepeated = function() {
-  if (!this.length) return ["", 0];
+// String.prototype.longestRepeated = function() {
+//   if (!this.length) return ["", 0];
 
-  let current = this[0], maximum = current, currentPtr = 0;
+//   let current = this[0], maximum = current, currentPtr = 0;
 
-  for (let i = 1; i < this.length; i++) {
-    if (this[i] === this[currentPtr]) {
-      current += this[i];
-      if (current.length > maximum.length) {
-        maximum = current;
-      }
-    } else {
-      currentPtr = i;
-      current = this[i];
-    }
+//   for (let i = 1; i < this.length; i++) {
+//     if (this[i] === this[currentPtr]) {
+//       current += this[i];
+//       maximum = current.length > maximum.length ? current : maximum;
+//     } else {
+//       currentPtr = i;
+//       current = this[i];
+//     }
+//   }
+//   return [maximum[0], maximum.length];
+// }
+
+// let str = 'ababbbeeefffffffdd';
+// console.log(str.longestRepeated());
+
+
+console.log('Hello  World')
+
+// 48 --> ['4', '8'] --> [4, 8]
+
+function checkDivisibility(num) {
+  let status = true;
+  let numStr = "" + num;
+  let numArr = numStr.split('').map((val) => parseInt(val))
+  for (i = 0; i < numArr.length; i++) {
+    if (num % numArr[i] != 0) {
+      status = false;
+      break;
+    }  
   }
-  return [maximum[0], maximum.length];
+  return status;
 }
 
-let str = 'abaaaabbb';
-console.log(str.longestRepeated());
+console.log(checkDivisibility(128))
+
+var selfDividingNumbers = function (left, right) {
+  const selfDivisibles = [];
+  for (let i = left; i <= right; i++) {
+    if (checkDivisibility(i)) {
+      selfDivisibles.push(i);
+    }
+  }
+  return selfDivisibles;
+};
+
+// console.log(selfDividingNumbers(1, 22))
+
