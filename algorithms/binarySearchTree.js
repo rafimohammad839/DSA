@@ -50,12 +50,12 @@ class BinarySearchTree {
     let current = this.root;
     while (current) {
       if (value < current.value) {
-        if (value === current.left.value) {
+        if (current.left !== null && value === current.left.value) {
           return true;
         }
         current = current.left;
       } else {
-        if (value === current.right.value) {
+        if (current.right !== null && value === current.right.value) {
           return true;
         }
         current = current.right;
@@ -73,4 +73,4 @@ bst.insert(2)
 bst.insert(1)
 bst.insert(10)
 console.log(bst) // Final BST
-console.log(bst.find(13)) // Finds the value & returns true if found
+console.log(bst.find(8)) // Finds the value & returns true if found
