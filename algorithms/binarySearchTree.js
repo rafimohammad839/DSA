@@ -12,9 +12,14 @@ class BinarySearchTree {
   constructor() {
     this.root = null;
   }
+
+  isEmpty() {
+    return this.root === null;
+  }
+
   insert(value) {
     let newNode = new Node(value);
-    if (this.root === null) {
+    if (this.isEmpty()) {
       this.root = newNode;
       return this;
     }
