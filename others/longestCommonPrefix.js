@@ -3,7 +3,10 @@ function longestCommonPrefix(arr) {
   for (let i = 1; i < arr.length; i++) {
     let current = arr[i];
     for (let i = 0; i < current.length; i++) {
-        longestCommon = longestCommon.charAt(i) !== current.charAt(i) ?             longestCommon.slice(0, i) : longestCommon;
+      if (longestCommon.charAt(i) !== current.charAt(i)) {
+        longestCommon = longestCommon.slice(0, i);
+        break;
+      }
     }
   }
   return longestCommon || -1;
