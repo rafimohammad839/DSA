@@ -1,5 +1,4 @@
-/* Binary Search Tree for searching a value faster 
-as compared to an array data structure */
+/* Binary Search Tree using Recursion */
 class Node {
   constructor(value) {
     this.value = value;
@@ -21,27 +20,27 @@ class BinarySearchTree {
     let newNode = new Node(value);
     if (this.isEmpty()) {
       this.root = newNode;
-      return this;
+    } else {
+      this.insertNode(this.root, newNode);
     }
-    let current = this.root;
-    while (current) {
-      if (value === current.value) return undefined;
-      if (value < current.value) {
-        if (current.left === null) {
-          current.left = newNode;
-          return this;
-        }
-        current = current.left;
+  }
+
+  insertNode(root, newNode) {
+    if (newNode.value < root.value) {
+      if (root.left === null) {
+        root.left = newNode;
       } else {
-        if (current.right === null) {
-          current.right = newNode;
-          return this;
-        }
-        current = current.right;
+        this.insertNode(root.left, newNode);
+      }
+    } else {
+      if (root.right === null) {
+        root.right = newNode;
+      } else {
+        this.insertNode(root.right, newNode);
       }
     }
-    return this;
   }
+
   find(value) {
     if (this.isEmpty()) {
       return false;
@@ -76,4 +75,4 @@ bst.insert(2)
 bst.insert(1)
 bst.insert(10)
 console.log(bst) // Final BST
-console.log(bst.find(8)) // Finds the value & returns true if found
+console.log(bst.find(4)) // Finds the value & returns true if found
