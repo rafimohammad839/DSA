@@ -45,6 +45,8 @@ class LinkedList {
   insertAt(position, value) {
     if (position > this.size + 1 || position <= 0) {
       console.log("Enter valid position");
+    } else if (position === 1) {
+      this.prepend(value);
     } else {
       let newNode = new Node(value);
       let counter = 1;
