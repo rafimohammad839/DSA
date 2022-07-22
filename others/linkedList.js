@@ -93,19 +93,40 @@ class LinkedList {
     }
   }
 
+  // Reversing the linkedlist
   reverseList() {
     if (this.isEmpty()) {
       console.log("LinkedList is empty");
       return;
     }
     let prev = null;
-    while (this.head.next) {
-      let tempNext = this.head.next;
-      this.head.next = prev;
-      prev = this.head;
-      this.head = tempNext;
+    let current = this.head;
+    while (current) {
+      let tempNext = current.next;
+      current.next = prev;
+      prev = current;
+      current = tempNext;
     }
-    this.head.next = prev;
+    this.head = prev;
+  }
+
+  // Search a value in LinkedList
+  searchValue(value) {
+    if (this.isEmpty()) {
+      console.log("LinkedList is empty");
+      return;
+    }
+    let counter = 1;
+    let current = this.head;
+    while (current) {
+      if (current.value === value) {
+        return counter;
+      } else {
+        counter++;
+        current = current.next;
+      }
+    }
+    return -1;
   }
   
   // Print all the nodes in sequence
@@ -166,8 +187,12 @@ linkedList.print();
 linkedList.deleteAtPosition(2);
 linkedList.print();
 
+// Reversing the linkedlist
 console.log("Reversing the linked list:");
 linkedList.reverseList();
 linkedList.print();
+
+// Searching a value in linkedlist
+console.log(linkedList.searchValue(5));
 
 console.log("LinkedList size:", linkedList.getSize());
