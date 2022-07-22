@@ -43,7 +43,7 @@ class LinkedList {
   }
   // Insert a node at a particular position
   insertAt(position, value) {
-    if (position > this.size + 1) {
+    if (position > this.size + 1 || position <= 0) {
       console.log("Enter valid position");
     } else {
       let newNode = new Node(value);
@@ -76,13 +76,19 @@ class LinkedList {
   }
 
   // Deleting a node with specific value
-  deleteSpecific(value) {
-    let current = this.head;
-    while (current.next.value !== value && current.next !== null) {
-      current = current.next;
+  deleteAtPosition(position) {
+    if (position > this.size || position <= 0) {
+      console.log("Enter valid position");
+    } else {
+      let counter = 1;
+      let current = this.head;
+      while (counter < position - 1) {
+        current = current.next;
+        counter++;
+      }
+      current.next = current.next.next;
+      this.size--;
     }
-    current.next = current.next.next;
-    this.size--;
   }
   
   // Print all the nodes in sequence
@@ -132,16 +138,15 @@ linkedList.deleteFirst();
 linkedList.deleteFirst();
 linkedList.deleteFirst();
 linkedList.print()
-
 // Deleting the last node
 linkedList.deleteLast();
 linkedList.print();
 
 console.log();
-// Deleting the specific node
-linkedList.deleteSpecific(25);
+// Deleting nodes at specific positions
+linkedList.deleteAtPosition(4);
 linkedList.print();
-linkedList.deleteSpecific(40);
+linkedList.deleteAtPosition(2);
 linkedList.print();
 
 console.log("LinkedList size:", linkedList.getSize());
