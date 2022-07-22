@@ -16,6 +16,7 @@ class LinkedList {
   getSize() {
     return this.size;
   }
+  // Insert a node at the beginning
   prepend(value) {
     const newNode = new Node(value);
     if (this.isEmpty()) {
@@ -26,6 +27,7 @@ class LinkedList {
     }
     this.size++;
   }
+  // Insert a node at the end
   append(value) {
     const newNode = new Node(value);
     if (this.isEmpty()) {
@@ -39,6 +41,51 @@ class LinkedList {
     }
     this.size++;
   }
+  // Insert a node at a particular position
+  insertAt(position, value) {
+    if (position > this.size + 1) {
+      console.log("Enter valid position");
+    } else {
+      let newNode = new Node(value);
+      let counter = 1;
+      let current = this.head;
+      while (counter < position - 1) {
+        current = current.next;
+        counter++;
+      }
+      let tempNext = current.next;
+      current.next = newNode;
+      newNode.next = tempNext;
+      this.size++;
+    }
+  }
+  // Delete a node at the beginning
+  deleteFirst() {
+    this.head = this.head.next;
+    this.size--;
+  }
+
+  // Deleting a node at the end
+  deleteLast() {
+    let current = this.head;
+    while (current.next.next) {
+      current = current.next;
+    }
+    current.next = null;
+    this.size--;
+  }
+
+  // Deleting a node with specific value
+  deleteSpecific(value) {
+    let current = this.head;
+    while (current.next.value !== value && current.next !== null) {
+      current = current.next;
+    }
+    current.next = current.next.next;
+    this.size--;
+  }
+  
+  // Print all the nodes in sequence
   print() {
     if (this.isEmpty()) {
       console.log("List is Empty!");
@@ -55,7 +102,8 @@ class LinkedList {
 }
 
 let linkedList = new LinkedList();
-console.log(linkedList.isEmpty());
+
+// Inserting at beginning
 
 linkedList.prepend(5); 
 linkedList.prepend(2); 
@@ -64,9 +112,36 @@ linkedList.print();
 linkedList.prepend(8); 
 linkedList.prepend(12); 
 linkedList.print();
+
+// Inserting at end
 linkedList.append(25);
 linkedList.append(40);
 linkedList.append(50);
 linkedList.print();
 
-console.log(linkedList.getSize());
+// Inserting at position 4
+linkedList.insertAt(4, 65);
+linkedList.print();
+
+// Inserting at position 10
+linkedList.insertAt(10, 70);
+linkedList.print();
+
+// Deleting the first node
+linkedList.deleteFirst();
+linkedList.deleteFirst();
+linkedList.deleteFirst();
+linkedList.print()
+
+// Deleting the last node
+linkedList.deleteLast();
+linkedList.print();
+
+console.log();
+// Deleting the specific node
+linkedList.deleteSpecific(25);
+linkedList.print();
+linkedList.deleteSpecific(40);
+linkedList.print();
+
+console.log("LinkedList size:", linkedList.getSize());
