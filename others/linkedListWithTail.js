@@ -92,16 +92,18 @@ class LinkedList {
   }
 }
 
-let list = new LinkedList();
-console.log("List is empty?", list.isEmpty());
+export default LinkedList;
 
-list.append(1)
-list.append(2)
-list.append(3)
-list.prepend(0)
-list.print();
+// let list = new LinkedList();
+// console.log("List is empty?", list.isEmpty());
 
-console.log(list.removeFromFront())
-console.log(list.removeFromLast())
+// list.append(1)
+// list.append(2)
+// list.append(3)
+// list.prepend(0)
+// list.print();
 
-console.log("List size:", list.size);
+// console.log(list.removeFromFront())
+// console.log(list.removeFromLast())
+
+// console.log("List size:", list.size);
