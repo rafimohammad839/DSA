@@ -1,10 +1,9 @@
-/* Binary Search Tree using Recursion */
 class Node {
   constructor(value) {
     this.value = value;
     this.left = null;
     this.right = null;
-  }
+  } 
 }
 
 class BinarySearchTree {
@@ -17,7 +16,7 @@ class BinarySearchTree {
   }
 
   insert(value) {
-    let newNode = new Node(value);
+    const newNode = new Node(value);
     if (this.isEmpty()) {
       this.root = newNode;
     } else {
@@ -40,39 +39,46 @@ class BinarySearchTree {
       }
     }
   }
-
-  find(value) {
-    if (this.isEmpty()) {
+  search(root, value) {
+    if (!root) {
       return false;
     }
-    if (value == this.root.value) {
+    if (root.value === value) {
       return true;
+    } else if (value < root.value) {
+      return this.search(root.left, value);
+    } else {
+      return this.search(root.right, value);
     }
-    let found = false;
-    let current = this.root;
-    while (current) {
-      if (value < current.value) {
-        if (current.left !== null && value === current.left.value) {
-          return true;
-        }
-        current = current.left;
-      } else {
-        if (current.right !== null && value === current.right.value) {
-          return true;
-        }
-        current = current.right;
-      }
+  }
+  preOrder(root) {
+    if (root) {
+      console.log(root.value);
+      this.preOrder(root.left);
+      this.preOrder(root.right);
     }
-    return found;
+  }
+  inOrder(root) {
+    if (root) {
+      this.inOrder(root.left);
+      console.log(root.value);
+      this.inOrder(root.right);
+    }
+  }
+  postOrder(root) {
+    if (root) {
+      this.inOrder(root.left);
+      this.inOrder(root.right);
+      console.log(root.value);
+    }
   }
 }
 
-const bst = new BinarySearchTree();
-bst.insert(4)
-bst.insert(5)
-bst.insert(8)
-bst.insert(2)
-bst.insert(1)
+const bst = new BinarySearchTree()
 bst.insert(10)
-console.log(bst) // Final BST
-console.log(bst.find(4)) // Finds the value & returns true if found
+bst.insert(5)
+bst.insert(15)
+bst.insert(3)
+bst.insert(7)
+
+bst.postOrder(bst.root);
