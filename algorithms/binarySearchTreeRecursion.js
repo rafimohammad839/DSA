@@ -72,6 +72,21 @@ class BinarySearchTree {
       console.log(root.value);
     }
   }
+  // Finding min value
+  min(root) {
+    if (!root.left) {
+      return root.value;
+    }
+    return this.min(root.left);
+  }
+
+  // Finding max value
+  max(root) {
+    if (!root.right) {
+      return root.value;
+    }
+    return this.max(root.right);
+  }
 }
 
 const bst = new BinarySearchTree()
@@ -82,3 +97,7 @@ bst.insert(3)
 bst.insert(7)
 
 bst.postOrder(bst.root);
+// Finding the min value
+console.log("Min value: ", bst.min(bst.root))
+// Finding the max value
+console.log("Max value: ", bst.max(bst.root))
