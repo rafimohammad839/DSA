@@ -11,9 +11,8 @@ var containsNearbyDuplicate = function (nums, k) {
       let distance = i - map.get(nums[i])
       if (distance <= k) {
         return true;
-      } else {
-        map.set(nums[i], i);
-      }
+      } 
+      map.set(nums[i], i);
     } else {
       map.set(nums[i], i);
     }
@@ -21,7 +20,9 @@ var containsNearbyDuplicate = function (nums, k) {
   return false;
 };
 
-let nums = [1,2,3,1,2,3], k = 2
-console.log(containsNearbyDuplicate(nums, k))
+let nums1 = [1, 3, 1, 2, 3], k1 = 2 // Output: true
+let nums2 = [1, 8, 7, 5, 10, 8], k2 = 3 // Output: false
+console.log(containsNearbyDuplicate(nums1, k1))
+console.log(containsNearbyDuplicate(nums2, k2))
 
 
