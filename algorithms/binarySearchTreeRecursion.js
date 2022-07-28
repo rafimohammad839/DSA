@@ -51,6 +51,8 @@ class BinarySearchTree {
       return this.search(root.right, value);
     }
   }
+
+  // DFS Traversals - preorder, inorder and postorder
   preOrder(root) {
     if (root) {
       console.log(root.value);
@@ -72,6 +74,23 @@ class BinarySearchTree {
       console.log(root.value);
     }
   }
+
+  //BFS Traversal
+  levelOrder() {
+    let queue = [];
+    queue.push(this.root);
+    while (queue.length) {
+      const current = queue.shift();
+      console.log(current.value);
+      if (current.left) {
+        queue.push(current.left);
+      }
+      if (current.right) {
+        queue.push(current.right);
+      }
+    }
+  }
+
   // Finding min value
   min(root) {
     if (!root.left) {
@@ -96,7 +115,11 @@ bst.insert(15)
 bst.insert(3)
 bst.insert(7)
 
-bst.postOrder(bst.root);
+console.log('DFS Traversal: In-Order Traversal')
+bst.inOrder(bst.root);
+
+console.log('BFS Traversal: Level-Order Traversal')
+bst.levelOrder(bst.root);
 // Finding the min value
 console.log("Min value: ", bst.min(bst.root))
 // Finding the max value
