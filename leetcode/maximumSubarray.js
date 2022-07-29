@@ -3,6 +3,7 @@
  * @param {number[]} nums
  * @return {number}
  */
+// ---------------- Optimal Solution - O(N) | Kadane's Algorithm
  var maxSubArray = function(nums) {
   let max = Number.MIN_SAFE_INTEGER; // Or -Infinity or nums[0]
   let curr = 0;
