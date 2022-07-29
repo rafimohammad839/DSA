@@ -110,6 +110,13 @@ class LinkedList {
     this.head = prev;
   }
 
+  // Only printing in reverse order
+  printReverseLinkedList(head) {
+    if (head === null) return;
+    this.printReverseLinkedList(head.next);
+    console.log(head.value);
+  }
+
   // Search a value in LinkedList
   searchValue(value) {
     if (this.isEmpty()) {
@@ -186,6 +193,9 @@ linkedList.deleteAtPosition(4);
 linkedList.print();
 linkedList.deleteAtPosition(2);
 linkedList.print();
+
+// Printing in reverseOrder
+linkedList.printReverseLinkedList(linkedList.head);
 
 // Reversing the linkedlist
 console.log("Reversing the linked list:");
