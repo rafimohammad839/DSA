@@ -3,30 +3,30 @@ var merge = function (nums1, m, nums2, n) {
   let first = m - 1;
   let second = n - 1;
   let last = m + n - 1;
-  let i = last;
-  for (i = last; i >= 0; i--) {
+  while (first >= 0 && second >= 0) {
     if (first < 0 || second < 0) {
       break;
     }
     if (nums1[first] > nums2[second]) {
-      nums1[i] = nums1[first];
+      nums1[last] = nums1[first];
       first--;
     } else {
-      nums1[i] = nums2[second];
+      nums1[last] = nums2[second];
       second--;
     }
+    last--;
   }
 
   while (first >= 0) {
-    nums1[i] = nums1[first];
+    nums1[last] = nums1[first];
     first--;
-    i--;
+    last--;
   }
 
   while (second >= 0) {
-    nums1[i] = nums2[second];
+    nums1[last] = nums2[second];
     second--;
-    i--;
+    last--;
   }
 };
 
