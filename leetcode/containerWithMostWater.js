@@ -3,11 +3,25 @@
  * @param {number[]} height
  * @return {number}
  */
-/*
-   0 1 2 3 4 5 6 7 8
-  [1,8,6,2,5,4,8,3,7]
-*/
-var maxArea = function(height) {
+// ---------------------- Solution 1 | Time - O(N^2)
+// var maxArea = function(height) {
+//   let max = 0;
+//   for (let i = 0; i < height.length - 1; i++) {
+//     for (let j = i + 1; j < height.length; j++) {
+//       if (height[i] < height[j]) {
+//         let area = height[i] * Math.abs(i - j);
+//         max = Math.max(area, max);
+//       } else {
+//         let area = height[j] * Math.abs(i - j);
+//         max = Math.max(area, max);
+//       }
+//     }
+//   }
+//   return max;
+// };
+
+// ---------------------- Solution 2 | Time - O(N)
+var maxArea = function (height) {
   let left = 0;
   let right = height.length - 1;
   let maxArea = 0;
@@ -25,5 +39,5 @@ var maxArea = function(height) {
   return maxArea;
 };
 
-let height =  [1,1] // Output : 49
+let height = [1, 8, 6, 2, 5, 4, 8, 3, 7]; // Output : 49
 console.log(maxArea(height));
