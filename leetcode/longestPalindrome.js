@@ -5,7 +5,6 @@
  */
 var longestPalindrome = function(s) {
   let longest = 0;
-  let oddCount;
   let freqCount = new Map();
   for (let i = 0; i < s.length; i++) {
     if (freqCount.has(s.charAt(i))) {
