@@ -13,9 +13,13 @@
  */
 var invertTree = function (root) {
   if (root === null) return null;
+
+  // Swap the children
   let temp = root.left;
   root.left = root.right;
   root.right = temp;
+
+  // Recursively call the function for its children
   invertTree(root.left);
   invertTree(root.right);
   return root;
