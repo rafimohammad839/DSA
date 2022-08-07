@@ -13,17 +13,17 @@
  */
 var maxDepth = function(root) {
   let count = 0;
-  let max = 0;
+  let min = 0;
   function findDepth(root) {
     if (root === null) {
       return;
     }
     count += 1;
-    max = Math.max(count, max);
+    min = Math.min(count, min);
     findDepth(root.left);
     findDepth(root.right);
     count -= 1;
   }
   findDepth(root);
-  return max;
+  return min;
 };
