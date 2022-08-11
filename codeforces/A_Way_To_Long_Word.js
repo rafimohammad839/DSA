@@ -1,3 +1,4 @@
+// Problem Code: 71A
 function main() {
     let n = 4;
     let words = ['word',
