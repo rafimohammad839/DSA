@@ -1,4 +1,5 @@
 // Given a string, find all the permutations of the string
+// --------------------------------------------------------- Time Complexity - O(!N)
 function permutation(str) {
   const permutations = [];
   perm(str, "", permutations);
