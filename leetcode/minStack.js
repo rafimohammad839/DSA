@@ -1,22 +1,24 @@
 // Leetcode 155: Min Stack
-class Stack {
-  constructor() {
-    this.items = [];
-  }
-  push(val) {
-    this.items.push(val);
-  }
-  pop() {
-    return this.items.pop();
-  }
-  peek() {
-    return this.items[this.items.length - 1];
-  }
-  isEmpty() {
-    return this.items.length === 0;
-  }
+
+// Creating a regular stack class
+var Stack = function() {
+  this.items = [];
+}
+Stack.prototype.push = function(val) {
+  this.items.push(val);
+}
+Stack.prototype.pop = function() {
+  return this.items.pop();
+}
+Stack.prototype.peek = function() {
+  return this.items[this.items.length - 1];
 }
 
+Stack.prototype.isEmpty = function () {
+  return this.items.length === 0;
+}
+
+// Modified Stack class to get the minimum element in constant time
 var MinStack = function () {
   this.stack = new Stack();
   this.min_vals = new Stack();
