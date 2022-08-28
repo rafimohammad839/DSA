@@ -16,28 +16,15 @@
     start = 1;
   }
   for (let i = start; i < s.length && s.charCodeAt(i) >= 48 && s.charCodeAt(i) <= 57; i++) {
-    if (s.charAt(i) === "+") {
-      continue;
-    }
     let n = s.charAt(i) - '0';
     currNum = currNum * 10 + n;
   }
-  
-  if (isNegative) {
-    if (currNum >= Math.pow(2, 31)) {
-      return Math.pow(2, 31) * -1;
-    } else {
-      return currNum * -1;
-    }
-  } else {
-    if (currNum >= Math.pow(2, 31) - 1) {
-      return Math.pow(2, 31) - 1;
-    } else {
-      return currNum;
-    }
+  if (currNum > 0x7FFFFFFF) {
+    return isNegative ? -0x7FFFFFFF - 1 : 0x7FFFFFFF;
   }
+  return isNegative ? -currNum : currNum;
 };
 
-let str = "   +42";
+let str = "   -42";
 let num = myAtoi(str);
 console.log(num);
