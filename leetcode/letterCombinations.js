@@ -22,3 +22,7 @@ function helperFun(digits, output, options, result) {
     helperFun(digits.slice(1), output + s[i], options, result);
   }
 }
+
+let numStr = "23";
+let resultArr = letterCombinations(numStr);
+console.log(resultArr);
