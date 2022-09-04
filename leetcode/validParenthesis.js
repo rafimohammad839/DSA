@@ -6,44 +6,53 @@
   e.g., {[}] --> output : false
   {([])} --> output : true
 */
-var isValid = function(input) {
-  let inputArr = input.split("");
-  let stack = [];
-  for (let i = 0; i < inputArr.length; i++) {
-    let char = inputArr[i];
-    if (char === ")") {
-      if (!stack.isEmpty && peek(stack) === "(") {
+class Stack {
+  constructor() {
+    this.items = [];
+  }
+  push(value) {
+    this.items.push(value);
+  }
+  pop() {
+    return this.items.pop();
+  }
+  peek() {
+    return this.items[this.items.length - 1];
+  }
+  isEmpty() {
+    return this.items.length === 0;
+  }
+  size() {
+    return this.items.length;
+  }
+  print() {
+    console.log(this.items.toString());
+  }
+}
+function isValid(str) {
+  let stack = new Stack();
+  let len = str.length;
+  for (let i = 0; i < len; i++) {
+    if (str[i] === "(" 
+        || str[i] === "{" 
+        || str[i] === "["
+    ) {
+      stack.push(str[i]);
+    } else if (!stack.isEmpty()) {
+      if (str[i] === ")" && stack.peek() === "(") {
+        stack.pop();
+      } else if (str[i] === "}" && stack.peek() === "{") {
+        stack.pop();
+      } else if (str[i] === "]" && stack.peek() === "[") {
         stack.pop();
       } else {
-        stack.push(char);
-      }
-    } else if (char === "}") {
-      if (!stack.isEmpty && peek(stack) === "{") {
-        stack.pop();
-      } else {
-        stack.push(char);
-      }
-    } else if (char === "]") {
-      if (!stack.isEmpty && peek(stack) === "[") {
-        stack.pop();
-      } else {
-        stack.push(char);
+        stack.push(str[i]);
       }
     } else {
-      stack.push(char);
+      stack.push(str[i]);
     }
-
   }
-  return isEmpty(stack);
-}
-
-function peek(arr) {
-  let copyArr = [...arr];
-  return copyArr.pop();
-}
-
-function isEmpty(arr) {
-  return arr.length === 0 ? true : false;
+  return stack.isEmpty();
 }
 
 const inputStr = "[{({()})}]";
