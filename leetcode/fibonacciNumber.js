@@ -14,7 +14,7 @@
 //   return memo[n];
 // };
 
-// ----------------------------------- Solution 2 | Dynamic Programming Solution | Time - O(N)
+// ------------------------------------------------------------ Solution 2 | Dynamic Programming Solution | Time - O(N)
 var fib = function(n) {
   if (n < 2) {
     return n;
