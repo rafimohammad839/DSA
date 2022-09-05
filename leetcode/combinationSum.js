@@ -7,7 +7,7 @@
 var combinationSum = function(nums, sum) {
   let res = [];
   let temp = [];
-  function dfs(nums, sum, res, temp) {
+  function dfs(nums, l, sum, res, temp) {
     if (sum === 0) {
       let copy = JSON.parse(JSON.stringify(temp));
       res.push(copy);
@@ -16,16 +16,16 @@ var combinationSum = function(nums, sum) {
     if (sum < 0) {
       return;
     }
-    for (let i = 0; i < nums.length; i++) {
+    for (let i = l; i < nums.length; i++) {
       temp.push(nums[i]);
       sum -= nums[i];
-      dfs(nums.slice(i), sum, res, temp);
+      dfs(nums, i, sum, res, temp);
       temp.pop();
       sum += nums[i];
     }
-
+    
   }
-  dfs(nums, sum, res, temp);
+  dfs(nums, 0, sum, res, temp);
   return res;
 };
 
