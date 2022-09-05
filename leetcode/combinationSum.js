@@ -1,7 +1,7 @@
 // Leetcode 39: Combination Sum
 /**
- * @param {number[]} candidates
- * @param {number} target
+ * @param {number[]} nums
+ * @param {number} sum
  * @return {number[][]}
  */
 var combinationSum = function(nums, sum) {
