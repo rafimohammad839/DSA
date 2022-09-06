@@ -6,7 +6,7 @@
 var countVowelStrings = function(n) {
   let count = 0;
   let vowels = ['a', 'e', 'i', 'o', 'u'];
-  function dfs(n, l, vowels, output) {
+  function dfs(n, l, vowels) {
     if (n === 0) {
       count++;
       return;
@@ -17,10 +17,10 @@ var countVowelStrings = function(n) {
     }
 
     for (let i = l; i < vowels.length; i++) {
-      dfs(n - 1, i, vowels, output + vowels[i]);
+      dfs(n - 1, i, vowels);
     }
   }
-  dfs(n, 0, vowels, "");
+  dfs(n, 0, vowels);
   return count;
 };
 
