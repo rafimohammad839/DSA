@@ -33,3 +33,6 @@
   dfs(nums, 0, sum, res, temp);
   return res;
 };
+
+let candidates = [10,1,2,7,6,1,5], target = 8
+console.log(combinationSum2(candidates, target))
