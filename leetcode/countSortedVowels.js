@@ -5,24 +5,18 @@
  */
 // ---------------------------------------------------------------- Solution 1 | Recursion | Time - O(5^N) | Space - O(N)
 // var countVowelStrings = function(n) {
-//   let count = 0;
-//   let vowels = ['a', 'e', 'i', 'o', 'u'];
-//   function dfs(n, l, vowels) {
+//   let numberOfVowels = 5;
+//   function dfs(n, l) {
 //     if (n === 0) {
-//       count++;
-//       return;
+//       return 1;
 //     }
-
-//     if (n < 0) {
-//       return;
+//     let count = 0;
+//     for (let i = l; i < numberOfVowels; i++) {
+//       count += dfs(n - 1, i);
 //     }
-
-//     for (let i = l; i < vowels.length; i++) {
-//       dfs(n - 1, i, vowels);
-//     }
+//     return count;
 //   }
-//   dfs(n, 0, vowels);
-//   return count;
+//   return dfs(n, 0);
 // };
 
 // ---------------------------------------------------------------- Solution 2 | Dynamic Programming | Time - O(N) | Space - O(1)
