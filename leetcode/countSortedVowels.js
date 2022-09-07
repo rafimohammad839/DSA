@@ -29,11 +29,10 @@
 var countVowelStrings = function(n) {
   let dp = new Array(5).fill(1);
   let sum = 0;
-  while (n > 1) {
+  while (--n) {
     for (let i = 1; i < dp.length; i++) {
       dp[i] += dp[i - 1];
     }
-    n--;
   }
   for (let i = 0; i < dp.length; i++) {
     sum += dp[i];
