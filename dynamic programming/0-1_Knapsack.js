@@ -23,37 +23,58 @@
 
 
 // ---------------------------------------------------------------- Solution 2 | Dynamic Programming - Top Down
-class Solution {
-  //Function to return max value that can be put in knapsack of capacity W.
-  // memo = {};
-  dp = [];
-  knapSack(W, wt, val, n) {
-    this.dp = Array(W + 1).fill(0).map(() => Array(n + 1).fill(-1));
-    return this.knapSackHelper(W, wt, val, n, this.dp);
+// class Solution {
+//   //Function to return max value that can be put in knapsack of capacity W.
+//   // memo = {};
+//   dp = [];
+//   knapSack(W, wt, val, n) {
+//     this.dp = Array(W + 1).fill(0).map(() => Array(n + 1).fill(-1));
+//     return this.knapSackHelper(W, wt, val, n, this.dp);
+//   }
+
+//   knapSackHelper(W, wt, val, n, dp) {
+//     if (dp[W][n] !== -1) {
+//       return dp[W][n];
+//     }
+
+//     if (n === 0 || W === 0) {
+//       return 0;
+//     }
+
+//     if (wt[n - 1] > W) {
+//       return dp[W][n] = this.knapSackHelper(W, wt, val, n - 1, dp);
+//     }
+
+//     return dp[W][n] = Math.max(val[n - 1] + this.knapSackHelper(W - wt[n - 1], wt, val, n - 1, dp), this.knapSackHelper(W, wt, val, n - 1, dp));
+//   }
+// }
+
+
+//---------------------------------------------------------------- Solution 3 | Dynamic Programming - Bottom Up
+function knapSack(W, weights, values, n) {
+  let dp = new Array(n + 1).fill(-1).map(() => new Array(W + 1).fill(-1));
+
+  for (let i = 0; i < n + 1; i++) {
+    for (let j = 0; j < W + 1; j++) {
+      if (i === 0 || j === 0) {
+        dp[i][j] = 0;
+      } else {
+        if (weights[i - 1] > j) {
+          dp[i][j] = dp[i - 1][j];
+        } else {
+          dp[i][j] = Math.max(values[i - 1] + dp[i - 1][j - weights[i - 1]], dp[i - 1][j]);
+        }
+      }
+    }
   }
-
-  knapSackHelper(W, wt, val, n, dp) { 
-    if (dp[W][n] !== -1) {
-      return dp[W][n];
-    }
-
-    if (n === 0 || W === 0) {
-      return 0;
-    }
-
-    if (wt[n - 1] > W) {
-      return dp[W][n] = this.knapSackHelper(W, wt, val, n - 1, dp);
-    }
-
-    return dp[W][n] = Math.max(val[n - 1] + this.knapSackHelper(W - wt[n - 1], wt, val, n - 1, dp), this.knapSackHelper(W, wt, val, n - 1, dp));
-  }
+  return dp[n][W];
 }
 
-let values = [1, 2, 3];
-let weights = [4, 5, 1];
-let W = 4;
+let weights = [10, 20, 30];
+let values = [60, 100, 120];
+let W = 50;
 let n = values.length;
 
-let sol = new Solution();
+// let sol = new Solution();
 
-console.log(sol.knapSack(W, weights, values, n));
+console.log(knapSack(W, weights, values, n));
