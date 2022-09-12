@@ -23,7 +23,7 @@
 // };
 
 
-// ----------------------------------- Solution 2 | Space - O(N) | Time - O(N)
+// ----------------------------------- Solution 2 | 1D Array DP | Space - O(N) | Time - O(N)
 // var rob = function (nums) {
 //   let dp = Array(nums.length + 1).fill(0);
 //   dp[0] = 0;
@@ -34,7 +34,7 @@
 //   return dp[nums.length];
 // };
 
-// ----------------------------------- Solution 3 | Space - O(1) | Time - O(N)
+// ----------------------------------- Solution 3 | Constant Space DP | Space - O(1) | Time - O(N)
 var rob = function (nums) {
   let first = 0, second = 0;
   for (const i in nums) {
