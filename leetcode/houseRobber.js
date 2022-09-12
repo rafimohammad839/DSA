@@ -3,7 +3,27 @@
  * @param {number[]} nums
  * @return {number}
  */
-// ----------------------------------- Solution 1 | Space - O(N) | Time - O(N)
+// ----------------------------------- Solution 1 | Memoization
+// var rob = function (nums) {
+//   let dp = {};
+//   let n = nums.length;
+//   function dfs(nums, idx) {
+//     if (idx >= n) {
+//       return 0;
+//     }
+//     if (idx === n - 1) {
+//       return dp[idx] = nums[idx];
+//     }
+//     if (idx in dp) {
+//       return dp[idx];
+//     }
+//     return dp[idx] = Math.max(nums[idx] + dfs(nums, idx + 2), dfs(nums, idx + 1));
+//   }
+//   return dfs(nums, 0);
+// };
+
+
+// ----------------------------------- Solution 2 | Space - O(N) | Time - O(N)
 // var rob = function (nums) {
 //   let dp = Array(nums.length + 1).fill(0);
 //   dp[0] = 0;
@@ -14,7 +34,7 @@
 //   return dp[nums.length];
 // };
 
-// ----------------------------------- Solution 2 | Space - O(1) | Time - O(N)
+// ----------------------------------- Solution 3 | Space - O(1) | Time - O(N)
 var rob = function (nums) {
   let first = 0, second = 0;
   for (const i in nums) {
@@ -24,5 +44,7 @@ var rob = function (nums) {
   }
   return second;
 };
-let nums = [2,7,9,3,1];
+
+
+let nums = [2, 7, 9, 3, 1];
 console.log(rob(nums));
