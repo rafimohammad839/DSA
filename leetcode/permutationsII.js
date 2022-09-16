@@ -3,24 +3,25 @@
  * @param {number[]} nums
  * @return {number[][]}
  */
-
-function recursion(nums, i, j, res) {
-  if (i === j - 1) {
-    res.push([...nums]);
-    return;
+ var permuteUnique = function(nums) {
+  nums.sort((a, b) => a - b)
+  let l = 0;
+  let r = nums.length - 1;
+  let result = [];
+  function permute(nums, l, r) {
+    if (l === r) {
+      let copy = JSON.parse(JSON.stringify(nums));
+      result.push(copy);
+      return;
+    }
+    for (let i = l; i <= r; i++) {
+      if (i !== l && nums[i] === nums[l]) continue;
+      swap(nums, l, i);
+      permute([...nums], l + 1, r);
+    }
   }
-  for (let k = i; k < j; k++) {
-    if (i !== k && nums[i] === nums[k]) continue;
-    swap(nums, i, k);
-    recursion([...nums], i + 1, j, res);
-  }
-}
-
-var permuteUnique = function (nums) {
-  nums.sort((a, b) => a - b);
-  let res = [];
-  recursion(nums, 0, nums.length, res);
-  return res;
+  permute(nums, l, r);
+  return result;
 };
 
 function swap(arr, i, j) {
