@@ -1,9 +1,4 @@
 // Leetcode 438: Find All Anagrams in a String
-/**
- * @param {string} s
- * @param {string} p
- * @return {number[]}
- */
 var findAnagrams = function (s, p) {
   if (s.length < p.length) return [];
   
@@ -19,27 +14,23 @@ var findAnagrams = function (s, p) {
   }
 
   let res = [];
-  let status = true;
-  for (let i = 0; i < 26; i++) {
-    if (pFreq[i] !== windowFreq[i]) status = false;
-  }
-  if (status) res.push(0);
+  
+  if (compareArrays(pFreq, windowFreq)) res.push(0);
 
   for (let i = pLen; i < sLen; i++) {
     windowFreq[s.charCodeAt(i - pLen) - 97]--;
     windowFreq[s.charCodeAt(i) - 97]++;
 
-    let status = true;
-    for (let i = 0; i < 26; i++) {
-      if (pFreq[i] !== windowFreq[i]) status = false;
-    }
-
-    if (status) res.push(i - pLen+1);
+    if (compareArrays(pFreq, windowFreq)) res.push(i - pLen+1);
   }
 
   return res; // Returning the result with starting indices
   // of all anagrams in s
 };
+
+function compareArrays(arr1, arr2) {
+  return arr1.every((val, idx) => val === arr2[idx]);
+}
 
 let s = "cbaebabacd", p = "abc";
 console.log(findAnagrams(s, p));

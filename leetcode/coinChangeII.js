@@ -1,9 +1,10 @@
+// Leetcode 518: Coin Change II
 /**
  * @param {number} amount
  * @param {number[]} coins
  * @return {number}
  */
-var change = function(amount, coins) {
+ var change = function(amount, coins) {
   let len = coins.length;
   let dp = new Array(len).fill(-1).map(() => new Array(amount + 1).fill(-1));
   function countWays(amount, coins, idx) {
@@ -29,5 +30,5 @@ var change = function(amount, coins) {
   return countWays(amount, coins, 0);
 };
 
-let amount = 5, coins = [1, 2, 5];
+let coins = [1, 2, 5], amount = 5;
 console.log(change(amount, coins));
