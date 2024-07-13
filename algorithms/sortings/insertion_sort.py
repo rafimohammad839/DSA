@@ -1,14 +1,16 @@
-def insertion_sort(arr):
-  for i in range(1, len(arr)):
-    j = i - 1
-    key = arr[i]
-    while j >= 0 and arr[j] > key:
-      arr[j + 1] = arr[j]
-      j -= 1
-    arr[j + 1] = key
+class Sorter:
+  def insertion_sort(self, arr):
+    for i in range(1, len(arr)):
+      j = i - 1
+      key = arr[i]
+      while j >=0 and arr[j] > key:
+        arr[j + 1] = arr[j]
+        j -= 1
+      arr[j + 1] = key
 
+sorted = Sorter()
 # an unsorted array
-arr = [10, 20, 15, 12, 11, 5, 8]
-insertion_sort(arr)
+arr = [8, 5, 3, 2, 1]
+sorted.insertion_sort(arr)
 # sorted array
 print(arr)
