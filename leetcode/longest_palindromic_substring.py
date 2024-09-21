@@ -34,8 +34,3 @@ def longestPalindrome(s: str) -> int:
   return findPalindromes(s)
 
 print(longestPalindrome("babad"))
-
-
-
-
-  
